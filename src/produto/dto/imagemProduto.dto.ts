@@ -8,3 +8,8 @@ export class ImagemProdutoDTO {
   @IsNotEmpty({ message: 'A descrição não pode ser vazia' })
   descricao: string;
 }
+
+export class ListaImagemProdutoDTO {
+  url: string;
+  descricao: string;
+}

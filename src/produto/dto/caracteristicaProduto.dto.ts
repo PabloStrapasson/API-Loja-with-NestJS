@@ -9,3 +9,8 @@ export class CaracteristasProdutoDTO {
   @IsNotEmpty({ message: 'A descrição não pode ser vazia' })
   descricao: string;
 }
+
+export class ListaCaracteristicasProdutoDTO {
+  nome: string;
+  descricao: string;
+}
