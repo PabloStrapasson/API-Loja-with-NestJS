@@ -6,13 +6,40 @@ import {
   IsPositive,
   IsString,
   IsUUID,
+  IsUrl,
   MaxLength,
   Min,
   ValidateNested,
 } from 'class-validator';
-import { ImagemProdutoDTO } from './imagemProduto.dto';
-import { CaracteristasProdutoDTO } from './caracteristicaProduto.dto';
 import { Type } from 'class-transformer';
+import { ProdutoEntity } from '../produto.entity';
+
+export class CaracteristasProdutoDTO {
+  id: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'O nome não pode ser vazio' })
+  nome: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'A descrição não pode ser vazia' })
+  descricao: string;
+
+  produto: ProdutoEntity;
+}
+
+export class ImagemProdutoDTO {
+  id: string;
+
+  @IsUrl(undefined, { message: 'A url informada não é valida' })
+  url: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'A descrição não pode ser vazia' })
+  descricao: string;
+
+  produto: ProdutoEntity;
+}
 
 export class CriaProdutoDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido' })
