@@ -1,5 +1,12 @@
-import { ListaCaracteristicasProdutoDTO } from './caracteristicaProduto.dto';
-import { ListaImagemProdutoDTO } from './imagemProduto.dto';
+export class ListaCaracteristicasProdutoDTO {
+  nome: string;
+  descricao: string;
+}
+
+export class ListaImagemProdutoDTO {
+  url: string;
+  descricao: string;
+}
 
 export class ListaProdutoDTO {
   id: string;

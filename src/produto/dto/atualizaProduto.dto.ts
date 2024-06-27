@@ -10,8 +10,8 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
-import { ImagemProdutoDTO } from './imagemProduto.dto';
-import { CaracteristasProdutoDTO } from './caracteristicaProduto.dto';
+import { ImagemProdutoDTO } from './criaProduto.dto';
+import { CaracteristasProdutoDTO } from './criaProduto.dto';
 
 export class AtualizaProdutoDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido' })
@@ -32,7 +32,7 @@ export class AtualizaProdutoDTO {
   @IsNumber()
   @Min(0, { message: 'Quantidade mínima inválida' })
   @IsOptional()
-  quantidadeDisponivel: number;
+  quantidade: number;
 
   @IsString()
   @IsOptional()
