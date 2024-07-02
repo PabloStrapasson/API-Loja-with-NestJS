@@ -8,8 +8,6 @@ import {
   Put,
 } from '@nestjs/common';
 import { CriaProdutoDTO } from './dto/criaProduto.dto';
-import { ProdutoEntity } from './produto.entity';
-import { randomUUID } from 'crypto';
 import { AtualizaProdutoDTO } from './dto/atualizaProduto.dto';
 import { ProdutoService } from './produto.service';
 
@@ -18,20 +16,13 @@ export class ProdutoController {
   constructor(private produtoService: ProdutoService) {}
   @Post()
   async criaProduto(@Body() dadosProduto: CriaProdutoDTO) {
-    const produto = new ProdutoEntity();
+    const produtoCadastrado =
+      await this.produtoService.criaProduto(dadosProduto);
 
-    produto.id = randomUUID();
-    produto.nome = dadosProduto.nome;
-    produto.idUsuario = dadosProduto.idUsuario;
-    produto.valor = dadosProduto.valor;
-    produto.quantidade = dadosProduto.quantidade;
-    produto.descricao = dadosProduto.descricao;
-    produto.categoria = dadosProduto.categoria;
-    produto.caracteristicas = dadosProduto.caracteristicas;
-    produto.imagens = dadosProduto.imagens;
-
-    this.produtoService.criaProduto(produto);
-    return produto;
+    return {
+      mensagem: 'Produto criado com sucesso.',
+      produto: produtoCadastrado,
+    };
   }
   @Get()
   async listaProdutos() {

@@ -6,7 +6,6 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  IsUUID,
   Min,
   ValidateNested,
 } from 'class-validator';
@@ -14,10 +13,6 @@ import { ImagemProdutoDTO } from './criaProduto.dto';
 import { CaracteristasProdutoDTO } from './criaProduto.dto';
 
 export class AtualizaProdutoDTO {
-  @IsUUID(undefined, { message: 'ID de usuário inválido' })
-  @IsOptional()
-  idUsuario: string;
-
   @IsString()
   @IsNotEmpty({ message: 'Nome do produto não pode ser vazio' })
   @IsOptional()
@@ -32,7 +27,7 @@ export class AtualizaProdutoDTO {
   @IsNumber()
   @Min(0, { message: 'Quantidade mínima inválida' })
   @IsOptional()
-  quantidade: number;
+  quantidadeDisponivel: number;
 
   @IsString()
   @IsOptional()

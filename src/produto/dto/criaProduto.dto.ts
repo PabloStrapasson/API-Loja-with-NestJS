@@ -5,7 +5,6 @@ import {
   IsNumber,
   IsPositive,
   IsString,
-  IsUUID,
   IsUrl,
   MaxLength,
   Min,
@@ -42,9 +41,6 @@ export class ImagemProdutoDTO {
 }
 
 export class CriaProdutoDTO {
-  @IsUUID(undefined, { message: 'ID de usuário inválido' })
-  idUsuario: string;
-
   @IsString()
   @IsNotEmpty({ message: 'O nome não pode ser vazio' })
   nome: string;
@@ -55,7 +51,7 @@ export class CriaProdutoDTO {
 
   @IsNumber(undefined, { message: 'O valor deve ser um número ' })
   @Min(0, { message: 'Quantidade mínima inválida' })
-  quantidade: number;
+  quantidadeDisponivel: number;
 
   @IsString()
   @IsNotEmpty({ message: 'A descrição não pode ser vazia' })
