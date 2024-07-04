@@ -39,4 +39,11 @@ export class UsuarioService {
   async deletaUsuario(id: string) {
     await this.usuarioRepository.delete(id);
   }
+
+  async existeEmail(email: string) {
+    const usuario = await this.usuarioRepository.find({
+      where: { email: email },
+    });
+    return usuario !== undefined;
+  }
 }
