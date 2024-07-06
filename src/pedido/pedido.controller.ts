@@ -6,24 +6,35 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
-import { CreatePedidoDto } from './dto/create-pedido.dto';
-import { UpdatePedidoDto } from './dto/update-pedido.dto';
+import { CriaPedidoDTO } from './dto/criaPedido.dto';
+import { AtualizaPedidoDTO } from './dto/atualizaPedido.dto';
 
-@Controller('pedido')
+@Controller('pedidos')
 export class PedidoController {
   constructor(private readonly pedidoService: PedidoService) {}
 
   @Post()
-  create(@Body() createPedidoDto: CreatePedidoDto) {
-    return this.pedidoService.create(createPedidoDto);
+  async criaPedido(
+    @Query('usuarioId') usuarioId: string,
+    @Body() dadosPedido: CriaPedidoDTO,
+  ) {
+    const pedidoCriado = await this.pedidoService.cadastraPedido(
+      usuarioId,
+      dadosPedido,
+    );
+    return pedidoCriado;
   }
 
   @Get()
-  findAll() {
-    return this.pedidoService.findAll();
+  async obtemPedidosDeUsuario(@Query('usuarioId') usuarioId: string) {
+    const pedidos = await this.pedidoService.obtemPedidosDeUsuario(usuarioId);
+
+    return pedidos;
   }
+  /*
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -39,4 +50,5 @@ export class PedidoController {
   remove(@Param('id') id: string) {
     return this.pedidoService.remove(+id);
   }
+    */
 }
