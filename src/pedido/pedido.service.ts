@@ -68,4 +68,11 @@ export class PedidoService {
       },
     });
   }
+
+  async atualizaPedido(id: string, dto: AtualizaPedidoDTO) {
+    const pedido = await this.pedidoRepository.findOneBy({ id });
+    Object.assign(pedido, dto);
+
+    return this.pedidoRepository.save(pedido);
+  }
 }
