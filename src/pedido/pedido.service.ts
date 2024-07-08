@@ -98,6 +98,9 @@ export class PedidoService {
   }
 
   async obtemPedidosDeUsuario(usuarioId: string) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const usuario = await this.buscaUsuarioPorId(usuarioId);
+
     return await this.pedidoRepository.find({
       where: {
         usuario: { id: usuarioId },
@@ -115,7 +118,7 @@ export class PedidoService {
       throw new NotFoundException('Pedido não foi encontrado!');
     }
 
-    Object.assign(pedido, dto);
+    Object.assign(pedido, dto as PedidoEntity);
 
     return this.pedidoRepository.save(pedido);
   }
