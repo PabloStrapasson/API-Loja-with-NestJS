@@ -32,6 +32,16 @@ export class ProdutoService {
     return produtos;
   }
 
+  async buscaProdutoId(id: string) {
+    const produto = await this.produtoRepoditory.findOneBy({ id });
+
+    if (produto === null) {
+      throw new NotFoundException('Produto não encontrado!');
+    }
+
+    return produto;
+  }
+
   async atualizaProduto(id: string, novoProduto: AtualizaProdutoDTO) {
     const produto = await this.produtoRepoditory.findOneBy({ id });
 

@@ -7,6 +7,9 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
 import { ProdutoModule } from './modulos/produto/produto.module';
 import { PedidoModule } from './modulos/pedido/pedido.module';
 import { FiltroExcecao } from './recursos/filtros/filtroExcecao';
+import { CacheModule } from '@nestjs/cache-manager';
+import { redisStore } from 'cache-manager-redis-yet';
+import { AutenticacaoModule } from './modulos/autenticacao/autenticacao.module';
 
 @Module({
   imports: [
@@ -20,6 +23,13 @@ import { FiltroExcecao } from './recursos/filtros/filtroExcecao';
       inject: [PostgresConfigService],
     }),
     PedidoModule,
+    CacheModule.registerAsync({
+      useFactory: async () => ({
+        store: await redisStore({ ttl: 10 * 1000 }),
+      }),
+      isGlobal: true,
+    }),
+    AutenticacaoModule,
   ],
   providers: [
     {

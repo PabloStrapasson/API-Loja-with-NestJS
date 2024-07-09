@@ -26,6 +26,14 @@
           - postgres
         networks:
           - postgres
+      
+      redis:
+        container_name: redi-cache
+        image: redis:7.0-alpine
+        ports:
+          - 6379:6379
+        volumes:
+          - redis:/data
     
     networks:
       postgres:
@@ -33,3 +41,4 @@
     
     volumes:
         postgres:
+        redis:
