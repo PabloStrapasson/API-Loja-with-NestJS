@@ -5,7 +5,7 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
+  //Delete,
   Query,
 } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
