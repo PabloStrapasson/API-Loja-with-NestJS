@@ -50,9 +50,7 @@ export class UsuarioService {
   }
 
   async existeEmail(email: string) {
-    const usuario = await this.usuarioRepository.find({
-      where: { email: email },
-    });
+    const usuario = await this.usuarioRepository.findOneBy({ email });
 
     if (usuario === null) {
       throw new NotFoundException('Email não encontrado!');
