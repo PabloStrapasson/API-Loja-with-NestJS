@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+An API for a fictional store developed with [Nest](https://github.com/nestjs/nest) framework. This project using PostgreSQL for the database, Redis for caching the API responses, JWT token for authentication system and Docker for up the necessaries services, i.e. database services.
 
 ## Installation
 
@@ -43,6 +43,13 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+
+## Docker
+
+```bash
+# to run the necessaries containers
+$ docker compose up
 ```
 
 ## Test
